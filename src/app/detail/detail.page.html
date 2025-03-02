@@ -1,0 +1,124 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <ion-title>Detalles de la Ciudad</ion-title>
+      <!-- <ion-buttons slot="end">
+        <ion-button (click)="updateCityDetails()">Guardar</ion-button>
+      </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card *ngIf="isNewCity">
+    <ion-card-header>
+      Nueva Ciudad
+    </ion-card-header>
+  <ion-card-content>
+   <ion-list>
+      <ion-item>
+        <ion-input label="Nombre de la Ciudad:" type="text" [(ngModel)]="newCity.nombre_ciudad" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="País:"  type="text" [(ngModel)]="newCity.pais" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Valoración:"  type="text" [(ngModel)]="newCity.valoracion" type="number" placeholder="Valoración" min="1" max="5" pattern="[1-5]"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Año de Registro:"  type="text" [(ngModel)]="newCity.ano_registro" required min="1900" max="2100" pattern="[0-9]{4}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Atracción Principal:"  type="text" [(ngModel)]="newCity.atraccion_principal" required></ion-input>
+      </ion-item>
+  </ion-list>
+  <ion-button expand="block" color="success" (click)="guardarNuevaCiudad()">
+    <ion-icon name="save" slot="start"></ion-icon>Save</ion-button>
+    <ion-button expand="block" (click)="cancelar()">Cancel</ion-button>
+</ion-card-content>
+</ion-card>
+
+  <ion-card *ngIf="!isNewCity && city && !editMode">
+    <ion-card-header>
+      {{city.nombre_ciudad}}
+    </ion-card-header>
+  <ion-card-content>
+   <ion-list>
+    <ion-item>
+      <ion-label>Id:</ion-label>
+      <ion-text>{{ city.id }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nombre de la Ciudad:<ion-text color="danger">*</ion-text></ion-label>
+      <!-- <ion-text>{{ city.nombre_ciudad }}</ion-text> -->
+      <ion-input [(ngModel)]="city.nombre_ciudad" placeholder="Nombre de la Ciudad" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <!--<ion-label>País:</ion-label>-->
+      <!--<ion-text>{{ city.pais }}</ion-text> -->
+      <ion-label position="floating">País<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input [(ngModel)]="city.pais" placeholder="País" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Valoración</ion-label>
+      <!--<ion-text>{{ city.valoracion }}</ion-text> -->
+      <ion-input [(ngModel)]="city.valoracion" placeholder="Valoración" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Año de Registro<ion-text color="danger">*</ion-text></ion-label>
+     <!--<ion-text>{{ city.ano_registro }}</ion-text> -->
+      <ion-input [(ngModel)]="city.ano_registro" type="number" placeholder="Año de Registro" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Atracción Principal:<ion-text color="danger">*</ion-text></ion-label>
+      <!--<ion-text>{{ city.atraccion_principal }}</ion-text> -->
+      <ion-input [(ngModel)]="city.atraccion_principal" placeholder="Atracción Principal" disabled></ion-input>
+    </ion-item>
+  </ion-list>
+   <ion-button expand="block" (click)="cancelar()">Cancel</ion-button>
+</ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="!isNewCity && city && editMode">
+  <ion-card-header>
+    {{city.nombre_ciudad}}
+  </ion-card-header>
+<ion-card-content>
+ <ion-list>
+  <ion-item>
+    <ion-label>Id:</ion-label>
+    <ion-text>{{ city.id }}</ion-text>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Nombre de la Ciudad:<ion-text color="danger">*</ion-text></ion-label>
+    <!-- <ion-text>{{ city.nombre_ciudad }}</ion-text> -->
+    <ion-input [(ngModel)]="city.nombre_ciudad" placeholder="Nombre de la Ciudad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <!--<ion-label>País:</ion-label>-->
+    <!--<ion-text>{{ city.pais }}</ion-text> -->
+    <ion-label position="floating">País<ion-text color="danger">*</ion-text></ion-label>
+    <ion-input [(ngModel)]="city.pais" placeholder="País"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Valoración</ion-label>
+    <!--<ion-text>{{ city.valoracion }}</ion-text> -->
+    <ion-input [(ngModel)]="city.valoracion" placeholder="Valoración" type="number" min="1" max="5" pattern="[1-5]"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Año de Registro<ion-text color="danger">*</ion-text></ion-label>
+   <!--<ion-text>{{ city.ano_registro }}</ion-text> -->
+    <ion-input [(ngModel)]="city.ano_registro" type="number" placeholder="Año de Registro" min="1900" max="2100" pattern="[0-9]{4}"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Atracción Principal:<ion-text color="danger">*</ion-text></ion-label>
+    <!--<ion-text>{{ city.atraccion_principal }}</ion-text> -->
+    <ion-input [(ngModel)]="city.atraccion_principal" placeholder="Atracción Principal"></ion-input>
+  </ion-item>
+</ion-list>
+<ion-button expand="block" color="success" (click)="updateCityDetails()">
+  <ion-icon name="save" slot="start"></ion-icon>Save</ion-button>
+<ion-button expand="block" (click)="cancelar()">Cancel</ion-button>
+</ion-card-content>
+</ion-card>
+</ion-content>
+

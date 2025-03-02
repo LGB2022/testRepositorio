@@ -1,20 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      <ion-label style="text-align: center;">{{ username }} </ion-label>
+       - Ciudades del mundo      
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToDetailPlus( )" expand="block" color="green" fill="clear" shape="round">
+        <ion-icon slot="end" name="add-outline"></ion-icon>
+        </ion-button>
+     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list>
+    <!-- ngFor para recorrer la array cityList -->
+     <!-- qué item borramos, need indice array añadiendo un parámetro al ngFor, añadimos ; al 
+      cityList;index as i, donde i contiene el índice de los elementos y se lo pasamos a la funcion de borrado onCompleteItem -->
+      <!-- pulsando sobre un item nos lleve al detail -->
+    <ion-item *ngFor="let item of cityList; index as i">
+      <ion-label (click)="goToDetail(item)">{{item.nombre_ciudad}}</ion-label>
+      <!-- binding -->
+      <!-- como no es un texto que es un objeto y no lo puede pintar correctamente, pasamos  {{item}} a esto: -->
+      
+      <ion-button size="small" slot="end" color="primary" (click)="editCity(item)">
+         <ion-icon name="create-outline"></ion-icon></ion-button>
+      <ion-button size="small" slot="end" color="danger" (click)="onCompleteItem(i, item.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+
+

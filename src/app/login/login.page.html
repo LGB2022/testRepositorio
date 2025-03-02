@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+   <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+   <ion-input [(ngModel)]="password" placeholder="Password"></ion-input>
+   <ion-button (click)="attemptLogin()">Iniciar sesión</ion-button>
+
+   <ion-button routerLink="/signup">Crear cuenta</ion-button>
+ </ion-content>
+
+
+ <!-- {{username}} -->
